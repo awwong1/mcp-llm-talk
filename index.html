@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
+  <link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/simple.css" />
+  <title>Using MCP & LLM to Slop Up My Issues</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <section>
+          <h2>Using MCP and LLMs to Slop Up My Issues</h2>
+          <div style="text-align: right; font-size: 0.8em;">
+            <p>June 2025</p>
+            <p>Edmonton</br>Python JavaScript Ruby Meetup</p>
+            <p>Alexander Wong</p>
+          </div>
+        </section>
+        <section>
+          <a href="https://tribune.com.pk/story/2549304/microsoft-backed-builderai-bankrupt-after-ai-powered-by-700-indian-engineers">
+            <img src="/no-ai-only-engineers-builder-ai-bankruptcy-v0-g0ijpw5e6a4f1.webp" alt="Builder AI Bankrupt"></a>
+        </section>
+        <section>
+          <p>What do you call a ghosted request to build a vibe-coded app?</p>
+          <p class="fragment fade-up">An HTTP <code style="font-family: 'Russo One', sans-serif;">541 (5AI)</code> error!</p>
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+          ## What are LLMs?
+          - LLM stands for **Large Language Model**
+          - They are a type of AI model that can understand and generate human-like text
+          - They are trained on vast amounts of text data to learn patterns, grammar, and context and admittedly, autocompleted about half of this presentation
+          ---
+          ## What is MCP?
+          - MCP stands for **Model Context Protocol**
+          - It was announced by [Anthropic back in November 2024](https://www.anthropic.com/news/model-context-protocol)
+          - This protocol is an attempt to standardize how LLMs can access and use external data
+          </textarea>
+        </section>
+        <section>
+          <img src="/meme.png" alt="MCP is kind of like the wheelchair">
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+          ## Demo
+          Can LLMs use MCP to help solve an issue with my API?
+          - Inspired by [Speakeasy's MCP tutorial](https://www.speakeasy.com/mcp/mcp-tutorial)
+          ---
+          ## Tool Dependencies
+          - [Cline (VS Code Extension)](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev); MCP host and agent
+          - [Sentry](https://sentry.io/); crash reporting, MCP server provider
+          - [GitHub](https://github.com); local MCP server access token
+          - [Minstral](https://mistral.ai/)
+              - We'll be using the `codestral-2501` model first.
+          - [Ollama](https://ollama.com/); local LLM server
+              - We will be trying [`devstral:24b`](https://ollama.com/library/devstral) and [`deepseek-r1:8b`](https://ollama.com/library/deepseek-r1)
+          ---
+          ## Math endpoint
+          [`/api/nerdamer`](/api/nerdamer)
+          - [1+1](/api/nerdamer?expr=1%2B1)
+          - [2x+x^3; x=4](/api/nerdamer?expr=2x%2Bx%5E3&x=4)
+          ---
+          What about division by zero?
+
+          [`/api/nerdamer?expr=1/0`](/api/nerdamer?expr=1%2F0)
+          </textarea>
+        </section>
+      </section>
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+          ## Code time
+          ---
+          ```
+          Add this project to GitHub as a new repository
+          ```
+          ---
+          ```
+          1. Fetch the latest issue from Sentry.
+          2. Create a new Github isue with a link back to the Sentry issue and a description.
+          3. Gix the bug based on the issue from Sentry.
+          4. Commit your changes in a new branch with an appropriate message, referencing Sentry and the GitHub issue.
+          5. Push your branch to GitHub.
+          6. Open a pull request with reference to the Github issue.
+          ```
+          ---
+          ## Model Sensitivity
+          - What happens if we use a different model?
+          ---
+          ## What did we learn?
+          - LLMs can be used to automate mundane tasks like issue triage and bug fixing
+          - MCP provides a standardized way for LLMs to access external data
+          - The combination of LLMs and MCP can help developers be more productive (sometimes)
+          </textarea>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h2>Thank you!</h2>
+          <p class="fragment fade-up">Questions?</p>
+        </section>
+      </section>
+    </div>
+  </div>
+  <script type="module" src="/src/client.ts"></script>
+</body>
+
+</html>
