@@ -31,13 +31,20 @@ export default Sentry.withSentry(
         const params = Array.from(searchParams.entries()).filter(
           ([key]) => key !== "expr"
         );
-        const result = nerdamer(expr, Object.fromEntries(params))
-        return new Response(JSON.stringify({
-          text: result.text(),
-          latex: result.toTeX(),
-        }), {
-          headers: { "Content-Type": "application/json" },
-        })
+try {
+  const result = nerdamer(expr, Object.fromEntries(params))
+  return new Response(JSON.stringify({
+    text: result.text(),
+    latex: result.toTeX(),
+  }), {
+    headers: { "Content-Type": "application/json" },
+  })
+} catch (error) {
+  return new Response(JSON.stringify({ error: "An error occurred while processing the request." }), {
+    status: 400,
+    headers: { "Content-Type": "application/json" },
+  });
+}
       }
 
       if (pathname.startsWith("/api")) {
